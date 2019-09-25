@@ -1,0 +1,91 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.15
+-- Dumped by pg_dump version 9.5.15
+
+-- Started on 2019-09-24 22:37:47
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 199 (class 1259 OID 20855)
+-- Name: stop; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.stop (
+    stop_id character varying NOT NULL,
+    name character varying NOT NULL,
+    people_off integer NOT NULL,
+    people_on integer NOT NULL,
+    prev_stop_id character varying,
+    next_stop_id character varying,
+    reach_pop_30_walk integer NOT NULL,
+    reach_pop_30_bike integer NOT NULL,
+    lat double precision NOT NULL,
+    lng double precision NOT NULL
+);
+
+
+ALTER TABLE public.stop OWNER TO postgres;
+
+--
+-- TOC entry 3464 (class 0 OID 20855)
+-- Dependencies: 199
+-- Data for Name: stop; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.stop VALUES ('cca80ef6-8948-444d-af74-580da16f0177', 'U Osloer Str. (Berlin)', 150, 0, 'null', '94ff93c4-bcd5-44b2-9630-b92fb1dcdfc3', 565, 6590, 52.557107000000002, 13.373279);
+INSERT INTO public.stop VALUES ('94ff93c4-bcd5-44b2-9630-b92fb1dcdfc3', 'U Nauener Platz (Berlin)', 42, 5, 'cca80ef6-8948-444d-af74-580da16f0177', 'cca80ef6-8948-444d-af74-580da16f0176', 5155, 50034, 52.551524000000001, 13.367364999999999);
+INSERT INTO public.stop VALUES ('cca80ef6-8948-444d-af74-580da16f0176', 'U Leopoldplatz (Berlin)', 22, 10, '94ff93c4-bcd5-44b2-9630-b92fb1dcdfc3', 'f18f36b4-93f4-42a0-802c-9ac58003bdda', 5165, 51548, 52.546492999999998, 13.359394999999999);
+INSERT INTO public.stop VALUES ('f18f36b4-93f4-42a0-802c-9ac58003bdda', 'U Amrumer Str. (Berlin)', 37, 30, 'cca80ef6-8948-444d-af74-580da16f0176', '13a05abd-58d8-4d41-b128-28d90cbe4908', 445, 247232, 52.542202000000003, 13.349534);
+INSERT INTO public.stop VALUES ('13a05abd-58d8-4d41-b128-28d90cbe4908', 'S+U Westhafen (Berlin)', 8, 7, 'f18f36b4-93f4-42a0-802c-9ac58003bdda', '85b2a22c-0227-4f64-8187-9b894faa5716', 653, 15616, 52.536183000000001, 13.343837000000001);
+INSERT INTO public.stop VALUES ('85b2a22c-0227-4f64-8187-9b894faa5716', 'U Birkenstr. (Berlin)', 3, 17, '13a05abd-58d8-4d41-b128-28d90cbe4908', 'f18f36b4-93f4-42a0-802c-9ac58003bddb', 8948, 135453, 52.532229000000001, 13.341417);
+INSERT INTO public.stop VALUES ('f18f36b4-93f4-42a0-802c-9ac58003bddb', 'U Turmstr. (Berlin)', 32, 8, '85b2a22c-0227-4f64-8187-9b894faa5716', '82d4f0b7-6ad3-458f-a352-6b85a3c49eb5', 8754, 15658, 52.525937999999996, 13.341417);
+INSERT INTO public.stop VALUES ('82d4f0b7-6ad3-458f-a352-6b85a3c49eb5', 'U Hansaplatz (Berlin)', 15, 10, 'f18f36b4-93f4-42a0-802c-9ac58003bddb', '6ba485d9-608f-4519-a0b3-b79f2bbf6f57', 5654, 25825, 52.518110999999998, 13.342165);
+INSERT INTO public.stop VALUES ('6ba485d9-608f-4519-a0b3-b79f2bbf6f57', 'Berlin  Hertzallee', 20, 11, '82d4f0b7-6ad3-458f-a352-6b85a3c49eb5', '102a013a-8bfd-41f7-92d0-5a0c674a0871', 2536, 423517, 52.509231, 13.332615000000001);
+INSERT INTO public.stop VALUES ('102a013a-8bfd-41f7-92d0-5a0c674a0871', 'S+U Zoologischer Garten Bhf (Berlin)', 20, 15, '6ba485d9-608f-4519-a0b3-b79f2bbf6f57', 'ab369a61-8395-4492-a70c-fe08fdc4c796', 321, 684651, 52.506920999999998, 13.332706999999999);
+INSERT INTO public.stop VALUES ('ab369a61-8395-4492-a70c-fe08fdc4c796', 'U KurfÃ¼rstendamm (Berlin)', 7, 9, '102a013a-8bfd-41f7-92d0-5a0c674a0871', '22945c6a-7ae0-4941-9b00-aaf87adb4985', 5151, 3543, 52.503762999999999, 13.331419);
+INSERT INTO public.stop VALUES ('22945c6a-7ae0-4941-9b00-aaf87adb4985', 'U Spichernstr. (Berlin)', 5, 13, 'ab369a61-8395-4492-a70c-fe08fdc4c796', '49b00146-5cb1-4581-8a64-96bf61ed62d3', 1156, 874884, 52.496581999999997, 13.330613);
+INSERT INTO public.stop VALUES ('49b00146-5cb1-4581-8a64-96bf61ed62d3', 'U GÃ¼ntzelstr. (Berlin)', 26, 15, '22945c6a-7ae0-4941-9b00-aaf87adb4985', 'cbca828b-1d61-4c21-b7a6-b66ddecccec9', 5187, 656584, 52.491992000000003, 13.33121);
+INSERT INTO public.stop VALUES ('cbca828b-1d61-4c21-b7a6-b66ddecccec9', 'U Berliner Str. (Berlin)', 0, 10, '49b00146-5cb1-4581-8a64-96bf61ed62d3', 'a4a66083-f054-407b-a7b4-c6f6950cc69e', 4886, 66684, 52.487046999999997, 13.331355);
+INSERT INTO public.stop VALUES ('a4a66083-f054-407b-a7b4-c6f6950cc69e', 'S+U Bundesplatz (Berlin)', 4, 20, 'cbca828b-1d61-4c21-b7a6-b66ddecccec9', 'fed6d6ee-adb8-4b7b-9d18-c890d49b71c6', 1486, 15488, 52.477366000000004, 13.329148999999999);
+INSERT INTO public.stop VALUES ('fed6d6ee-adb8-4b7b-9d18-c890d49b71c6', 'U Friedrich-Wilhelm-Platz (Berlin)', 10, 35, 'a4a66083-f054-407b-a7b4-c6f6950cc69e', '23179494-9894-4ef4-88b6-1dbdc1d9ade5', 11787, 486361, 52.471438999999997, 13.328676);
+INSERT INTO public.stop VALUES ('23179494-9894-4ef4-88b6-1dbdc1d9ade5', 'U Walther-Schreiber-Platz (Berlin)', 6, 55, 'fed6d6ee-adb8-4b7b-9d18-c890d49b71c6', '0b92f7be-81c8-49f5-869d-032beecb408c', 5177, 56485, 52.464998000000001, 13.328409000000001);
+INSERT INTO public.stop VALUES ('0b92f7be-81c8-49f5-869d-032beecb408c', 'U SchloÃŸstr. (Berlin)', 13, 100, '23179494-9894-4ef4-88b6-1dbdc1d9ade5', 'e109524d-b6f3-4657-907f-cac3900b53aa', 5184, 561468, 52.461182999999998, 13.324835999999999);
+INSERT INTO public.stop VALUES ('e109524d-b6f3-4657-907f-cac3900b53aa', 'S+U Rathaus Steglitz (Berlin) [U9]', 0, 50, '0b92f7be-81c8-49f5-869d-032beecb408c', 'null', 2848, 543345, 52.456437999999999, 13.319986);
+
+
+--
+-- TOC entry 3342 (class 2606 OID 20862)
+-- Name: PK_6522d349488a7c5bc31e985b84f; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.stop
+    ADD CONSTRAINT "PK_6522d349488a7c5bc31e985b84f" PRIMARY KEY (stop_id);
+
+
+-- Completed on 2019-09-24 22:37:47
+
+--
+-- PostgreSQL database dump complete
+--
+
+-- add geom
+
+ALTER TABLE public.stop ADD COLUMN geom geometry(Point,4326);
+UPDATE public.stop
+   SET geom=ST_SetSRID(ST_MakePoint(lat, lng),4326);
+

@@ -1,5 +1,5 @@
 {
-   "name": "targomo",
+   "name": "server",
    "version": "0.0.1",
    "description": "Awesome project developed with TypeORM.",
    "devDependencies": {
@@ -8,11 +8,13 @@
       "typescript": "3.3.3333"
    },
    "dependencies": {
-      "express": "^4.17.1",
+      "@types/geojson": "^7946.0.7",
+      "body-parser": "^1.18.1",
+      "express": "^4.15.4",
       "pg": "^7.3.0",
-      "reflect-metadata": "^0.1.10",
+      "reflect-metadata": "^0.1.13",
       "swagger-ui-express": "^4.1.1",
-      "typeorm": "0.2.19"
+      "typeorm": "^0.2.19"
    },
    "scripts": {
       "start": "ts-node src/index.ts"
