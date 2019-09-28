@@ -7,10 +7,12 @@ import {Routes} from "./routes";
 import {User} from "./entity/User";
 import * as swaggerDocument from './swagger.json';
 const swaggerUi = require('swagger-ui-express');
+var cors = require('cors');
 createConnection().then(async connection => {
 
     // create express app
     const app = express();
+    app.use(cors());
     app.use(bodyParser.json());
 
     // register express routes from defined application routes

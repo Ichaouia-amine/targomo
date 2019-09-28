@@ -1,0 +1,98 @@
+
+<div class="row">
+    <div class="col s12 m12 l12">
+            <mz-input-container>
+                    <i mz-icon-mdi mz-input-prefix
+                      [icon]="'magnify'">
+                    </i>
+                    <input mz-input
+                      [label]="'Filter By Name'"
+                      placeholder="Stop"
+                      length="150"
+                      type="text"
+                      (ngModelChange)="filter($event)"
+                          [(ngModel)]="searchTxt">
+                  </mz-input-container>
+    </div>
+    <div class="col s6 m3 l3">
+            <mz-radio-button-container>
+                    <input mz-radio-button
+                      [label]="'On'"
+                      [withGap]="true"
+                      id="radio-button-on"
+                      name="radio-group"
+                      type="radio"
+                      (ngModelChange)="choose($event)"
+                      [(ngModel)]="defaultChoice"
+                      [value]="'on'">
+                  </mz-radio-button-container>
+    </div>
+    <div class="col s6 m3 l3">
+            <mz-radio-button-container>
+                    <input mz-radio-button
+                      [label]="'Off'"
+                      [withGap]="true"
+                      id="radio-button-off"
+                      name="radio-group"
+                      type="radio" 
+                      (ngModelChange)="choose($event)"
+                      [(ngModel)]="defaultChoice"
+                      [value]="'off'">
+                  </mz-radio-button-container>
+                  
+    </div>
+    <div class="col s6 m3 l3">
+            <mz-radio-button-container>
+                    <input mz-radio-button
+                      [label]="'Walk'"
+                      [withGap]="true"
+                      id="radio-button-walk"
+                      name="radio-group"
+                      type="radio" 
+                      (ngModelChange)="choose($event)"
+                      [(ngModel)]="defaultChoice"
+                      [value]="'walk'">
+                  </mz-radio-button-container>
+                  
+    </div>
+    <div class="col s6 m3 l3">
+            <mz-radio-button-container>
+                    <input mz-radio-button
+                      [label]="'Bike'"
+                      [withGap]="true"
+                      id="radio-button-bake"
+                      name="radio-group"
+                      type="radio"
+                      (ngModelChange)="choose($event)"
+                      [(ngModel)]="defaultChoice"
+                      [value]="'bike'">
+                  </mz-radio-button-container>
+                  
+    </div>
+        
+</div>
+<div class="overflow">
+    <mz-collapsible [mode]="'accordion'" [onClose]="closeFunctionCallback" [onOpen]="openFunctionCallback"
+        [popout]="false" >
+        <ng-template ngFor let-stop [ngForOf]="stops" let-id="index">
+            <mz-collapsible-item [active]="false" style="width: 100%;">
+                <mz-collapsible-item-header style="width: 100%;"  (click)="zoom(stop)">
+                    <div class="row">
+                        <div [ngSwitch]="defaultChoice" class="col s2 m1 l1" >
+                        <div *ngSwitchCase="'on'" class="legend" [ngStyle]="{'background-color': stop.color_on}"></div>
+                        <div *ngSwitchCase="'off'" class="legend" [ngStyle]="{'background-color': stop.color_off}"></div>
+                        <div *ngSwitchCase="'walk'" class="legend" [ngStyle]="{'background-color': stop.color_walk}"></div>
+                        <div *ngSwitchCase="'bike'" class="legend" [ngStyle]="{'background-color': stop.color_bike}"></div>
+                        </div>
+                        <div class="truncate col s18 m10 l10">{{stop.name}}</div>
+                    </div>
+                </mz-collapsible-item-header>
+                <mz-collapsible-item-body>
+                    <app-stop-item [stop]="stop" [average]="average" [category]="defaultChoice"></app-stop-item>
+                </mz-collapsible-item-body>
+
+            </mz-collapsible-item>
+        </ng-template>
+
+    </mz-collapsible>
+</div>
