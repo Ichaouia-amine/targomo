@@ -119,6 +119,17 @@ I don't have a time for tests, but PhantomJS is used like browser
     1. desktop => 2/3 Map && 1/3 stop Inerface
     2. Mobile < 400px width 1/2 Map && 1/2 stop Inerface
 6. Interface
-    1.
-    ![img1](images/img1.JPG)
+    1. 
+        ![img1](images/img1.JPG)
 
+    2. 
+    ![img2](images/img2.JPG)
+
+    3. 
+    ![img3](images/img3.JPG)
+
+    4. 
+    ![img5](images/img5.JPG)
+
+    5. Mobile version
+    ![img2](images/img4.JPG)
