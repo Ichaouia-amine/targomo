@@ -1,15 +1,16 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { AppModule } from './app.module';
 
-describe('AppComponent', () => {
+fdescribe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        AppModule
       ],
       declarations: [
-        AppComponent
       ],
     }).compileComponents();
   }));
@@ -23,7 +24,7 @@ describe('AppComponent', () => {
   it(`should have as title 'front'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('front');
+    expect(app.size).toBeGreaterThan(10);
   });
 
   it('should render title in a h1 tag', () => {

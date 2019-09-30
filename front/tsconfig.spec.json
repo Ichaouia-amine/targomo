@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/spec",
+    "target": "es5",
     "types": [
       "jasmine",
       "node"
@@ -14,5 +15,8 @@
   "include": [
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
-  ]
+  ],
+  "preprocessors": {
+    "**/*.ts": ["karma-typescript", "coverage"]
+}
 }

@@ -1,8 +1,16 @@
-<div class="row">
-  <div class="col s4 m8 l9">
-    <app-map></app-map>
+<main (window:resize)="onResize($event)">
+  <div *ngIf="size > 400" class="row">
+    <div class="col s4 m8 l9">
+      <app-map></app-map>
+    </div>
+    <div class="col s8 m4 l3">
+      <app-stop></app-stop>
+    </div>
   </div>
-  <div class="col s8 m4 l3">
-    <app-stop></app-stop>
+  <div *ngIf="size <= 400" class="row">
+      <app-map></app-map>
+    </div>
+    <div *ngIf="size <= 400" class="row">
+      <app-stop></app-stop>
   </div>
-</div>
+</main>

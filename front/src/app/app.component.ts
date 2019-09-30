@@ -7,7 +7,10 @@ import { environment } from './../environments/environment';
 })
 export class AppComponent {
   constructor() {
-    console.log(environment.urlApi);
+    this.size = window.screen.width;
   }
-  title = 'front';
+  public size: number;
+  onResize(event) {
+    this.size = window.screen.width;
+}
 }

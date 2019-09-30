@@ -1,14 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { StopService } from '../services/stop.service';
 import { Stop } from '../model/stop';
-import { MapService } from '../map/map.service';
-
+import { MapService } from '../modules/map/map.service';
+import { AppState } from '../model/app.state';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { LoadStops } from '../actions/stop.actions';
 @Component({
   selector: 'app-stop',
   templateUrl: './stop.component.html',
   styleUrls: ['./stop.component.css']
 })
 export class StopComponent implements OnInit {
+  public stopsRx: Observable<Array<Stop>>;
+  public loading$: Observable<boolean>;
+  public error$: Observable<Error>;
   public stops: Stop[];
   public stopsOriginal: Stop[];
   public midOn: number;
@@ -19,40 +25,58 @@ export class StopComponent implements OnInit {
   public defaultChoice: string;
   public searchTxt: string;
   public selectedStop: Stop;
-  constructor(private stopService: StopService, private mapService: MapService) {
+  constructor(private stopService: StopService, private mapService: MapService, private store: Store<AppState>) {
     this.defaultChoice = 'on';
     this.searchTxt = '';
   }
 
   ngOnInit() {
-    this.stopService.getStops().subscribe((res: Stop[]) => {
-      this.stops = res;
-      this.orderStops();
-      this.addColors();
-      this.stopsOriginal = JSON.parse(JSON.stringify(this.stops));
-      const feats: any[] = [];
-      this.stops.forEach(s => {
-        feats.push({
-          type: 'Feature',
-          geometry: s.geom,
-          properties: {
-            name: s.name,
-            color_on: s.color_on,
-            color_off: s.color_off,
-            color_bike: s.color_bike,
-            color_walk: s.color_walk
-          }
+    this.stopsRx = this.store.select(st => st.Stations.stops);
+    this.loading$ = this.store.select(st => st.Stations.loading);
+    this.error$ = this.store.select(st => st.Stations.error);
+    this.store.dispatch(new LoadStops());
+    this.stopsRx.subscribe((res: Stop[]) => {
+      if (res.length > 0) {
+        this.stops = res;
+        this.orderStops();
+        this.addColors();
+        this.stopsOriginal = JSON.parse(JSON.stringify(this.stops));
+        const feats: any[] = [];
+        this.stops.forEach(s => {
+          feats.push({
+            type: 'Feature',
+            geometry: s.geom,
+            properties: {
+              name: s.name,
+              color_on: s.color_on,
+              color_off: s.color_off,
+              color_bike: s.color_bike,
+              color_walk: s.color_walk
+            }
+          });
         });
-      });
-      this.addLayers(feats);
+        this.addLayers(feats);
+      }
     });
   }
+  /**
+   *
+   *
+   * @param  feats : features of new data for sources
+   * @memberof StopComponent
+   */
   setLayersData(feats) {
     this.mapService.setLayerData('stopsPopOn', feats);
     this.mapService.setLayerData('stopsWalk', feats);
     this.mapService.setLayerData('stopsPopOff', feats);
     this.mapService.setLayerData('stopsBike', feats);
   }
+  /**
+   *
+   *
+   * @param {*} feats: features data for sources
+   * @memberof StopComponent
+   */
   addLayers(feats) {
     this.mapService.drawGeojson('stopsLine', this.createStopLine(), {
       'line-color': 'blue',
@@ -142,7 +166,7 @@ export class StopComponent implements OnInit {
     }, 'circle', {
       visibility: 'none'
     });
-    this.mapService.moveLayers('stopsLine', 'stopsPopOn');
+    // this.mapService.moveLayers('stopsLine', 'stopsPopOn');
   }
   choose(event) {
     this.defaultChoice = event;
@@ -180,12 +204,12 @@ export class StopComponent implements OnInit {
       this.zoom(this.selectedStop);
     }
   }
-  closeFunctionCallback(event) {
-    this.selectedStop = undefined;
-  }
-  openFunctionCallback(event) {
-    console.log(event);
-  }
+  /**
+   *
+   *
+   * @memberof StopComponent
+   * order stops by next_stop_id
+   */
   orderStops() {
     let stops: Stop[] = JSON.parse(JSON.stringify(this.stops));
     const stopOrdred: Stop[] = [this.stops.find(s => s.prev_stop_id === 'null')];
@@ -205,6 +229,13 @@ export class StopComponent implements OnInit {
       this.stops = stopOrdred;
     }
   }
+  /**
+   *
+   *
+   * @param {Stop} stop
+   * @memberof StopComponent
+   * zoom on stop by using a PulsingDot and stop color
+   */
   zoom(stop: Stop) {
     this.selectedStop = stop;
     let columnColor = 'color_on';
@@ -229,6 +260,13 @@ export class StopComponent implements OnInit {
     }], stop[columnColor]);
     this.mapService.zoomTo(stop.geom);
   }
+  /**
+   *
+   *
+   * @param  column
+   * @memberof StopComponent
+   * caculate statistics to create colors of legend
+   */
   getMaxMinMid(column): any {
     let max = 0;
     let min = 0;
@@ -245,6 +283,16 @@ export class StopComponent implements OnInit {
     const mid = sum / this.stops.length;
     return { mini: min, maxi: max, midel: mid };
   }
+  /**
+   *
+   *
+   * @param  columnColor
+   * @param  stats
+   * @param  colors
+   * @param  columnStat
+   * @memberof StopComponent
+   * caculate statistics to create colors of legend
+   */
   setColorsByStatColumn(columnStat, columnColor, stats, colors) {
     const classs: any[] = [stats.mini, stats.mini + (stats.midel - stats.mini) / 2,
     stats.midel, stats.midel + (stats.maxi - stats.midel) / 2, stats.maxi];
@@ -262,6 +310,12 @@ export class StopComponent implements OnInit {
       }
     });
   }
+  /**
+   *
+   *
+   * @memberof StopComponent
+   * caculate statistics to create colors of legend
+   */
   addColors() {
     const statOn = this.getMaxMinMid('people_on');
     const colors: string[] = ['#00FF00',
@@ -282,6 +336,13 @@ export class StopComponent implements OnInit {
     this.midOff = statOff.midel;
     this.average = this.midOn;
   }
+  /**
+   *
+   *
+   * @memberof StopComponent
+   * Create the line of all stops
+   * @returns geojson LineString
+   */
   createStopLine(): any {
     const geojson = {
       type: 'FeatureCollection',
@@ -299,7 +360,13 @@ export class StopComponent implements OnInit {
     });
     return geojson;
   }
-  filter(text) {
+  /**
+   *
+   * @param {string} text
+   * @memberof StopComponent
+   * search stops by name and filter map
+   */
+  filter(text: string) {
     this.mapService.deletePointPulsingDot('zoomStop');
     if (text !== '') {
       this.stops = JSON.parse(JSON.stringify(

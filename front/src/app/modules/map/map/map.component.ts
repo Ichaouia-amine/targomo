@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { MapService } from '../map.service';
 @Component({
@@ -6,11 +6,19 @@ import { MapService } from '../map.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, AfterViewInit {
 
-  constructor(private mapService: MapService) { }
+  constructor(private mapService: MapService) {
+    this.size = window.screen.width;
+  }
+  public size: number;
+  onResize(event) {
+    this.size = window.screen.width;
+}
 
   ngOnInit() {
+  }
+  ngAfterViewInit() {
     mapboxgl.accessToken = 'pk.eyJ1IjoiYWljaGFvdWlhIiwiYSI6ImNqa3I3MmtqcjNyN2Eza2t4bGVraGFwemgifQ.ozRWzQt-iFZEvoao3KJ8jA';
     this.mapService.map = new mapboxgl.Map({
       style: 'mapbox://styles/mapbox/light-v10',

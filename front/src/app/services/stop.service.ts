@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from './../../environments/environment';
+import { Stop } from '../model/stop';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,6 @@ export class StopService {
     const Header: HttpHeaders = new HttpHeaders({
       'Cache-Control': 'no-cache'
    });
-    return this.http.get(environment.urlApi + '/stops', { headers: Header});
+    return this.http.get<Stop[]>(environment.urlApi + '/stops', { headers: Header});
   }
 }

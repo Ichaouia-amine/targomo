@@ -17,9 +17,9 @@ div.relative {
   }
   .legend {
     margin-left: -20px;
-     height: 30px;
-     border-radius: 80px; 
-     width: 30px;
+    height: 15px;
+    border-radius: 10px;
+    width: 30px;
   }
   .search {
     height: 20vh;

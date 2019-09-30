@@ -4,7 +4,6 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import {Request, Response} from "express";
 import {Routes} from "./routes";
-import {User} from "./entity/User";
 import * as swaggerDocument from './swagger.json';
 const swaggerUi = require('swagger-ui-express');
 var cors = require('cors');
@@ -34,18 +33,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     // start express server
     app.listen(3000);
 
-    // insert new users for test
-    await connection.manager.save(connection.manager.create(User, {
-        firstName: "Timber",
-        lastName: "Saw",
-        age: 27
-    }));
-    await connection.manager.save(connection.manager.create(User, {
-        firstName: "Phantom",
-        lastName: "Assassin",
-        age: 24
-    }));
 
-    console.log("Express server has started on port 3000. Open http://localhost:3000/users to see results");
+    console.log("Express server has started on port 3000. Open http://localhost:3000/swagger to see results");
 
 }).catch(error => console.log(error));

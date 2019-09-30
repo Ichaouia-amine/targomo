@@ -14,7 +14,7 @@
                           [(ngModel)]="searchTxt">
                   </mz-input-container>
     </div>
-    <div class="col s6 m3 l3">
+    <div class="col s3 m3 l3">
             <mz-radio-button-container>
                     <input mz-radio-button
                       [label]="'On'"
@@ -27,7 +27,7 @@
                       [value]="'on'">
                   </mz-radio-button-container>
     </div>
-    <div class="col s6 m3 l3">
+    <div class="col s3 m3 l3">
             <mz-radio-button-container>
                     <input mz-radio-button
                       [label]="'Off'"
@@ -41,7 +41,7 @@
                   </mz-radio-button-container>
                   
     </div>
-    <div class="col s6 m3 l3">
+    <div class="col s3 m3 l3">
             <mz-radio-button-container>
                     <input mz-radio-button
                       [label]="'Walk'"
@@ -55,7 +55,7 @@
                   </mz-radio-button-container>
                   
     </div>
-    <div class="col s6 m3 l3">
+    <div class="col s3 m3 l3">
             <mz-radio-button-container>
                     <input mz-radio-button
                       [label]="'Bike'"
@@ -72,7 +72,7 @@
         
 </div>
 <div class="overflow">
-    <mz-collapsible [mode]="'accordion'" [onClose]="closeFunctionCallback" [onOpen]="openFunctionCallback"
+    <mz-collapsible [mode]="'accordion'"
         [popout]="false" >
         <ng-template ngFor let-stop [ngForOf]="stops" let-id="index">
             <mz-collapsible-item [active]="false" style="width: 100%;">

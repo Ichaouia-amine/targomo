@@ -1,5 +1,6 @@
 import { Stop } from './models';
+import { StopState } from '../reducers/stop.reducer';
 
 export interface AppState {
-    readonly stops: Array<Stop>;
+    readonly Stations: StopState;
 }
