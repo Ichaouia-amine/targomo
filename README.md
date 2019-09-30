@@ -120,5 +120,5 @@ I don't have a time for tests, but PhantomJS is used like browser
     Mobile < 400px width 1/2 Map && 1/2 stop Inerface
 .Interface
     1.
-    ![img1](images/img1.png)
+    ![img1](images/img1.JPG)
 
