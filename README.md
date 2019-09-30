@@ -1,7 +1,8 @@
 # targomo
 
-# Server 
-# Awesome Project Build with TypeORM
+## Server 
+
+## Project Build with TypeORM
 Steps to run this project:
 0. cd back/server
 
@@ -77,11 +78,13 @@ Steps to run this project:
     http://localhost:3000/swagger
 
 
-# Front
+## Front
 
 run : cd front 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
+## This project was generated with [Angular CLI]
+
+(https://github.com/angular/angular-cli) version 8.2.2.
 
 ## Development server
 
