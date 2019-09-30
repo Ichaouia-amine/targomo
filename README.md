@@ -120,7 +120,7 @@ I don't have a time for tests, but PhantomJS is used like browser
     2. Mobile < 400px width 1/2 Map && 1/2 stop Inerface
 6. Interface
     1. 
-        ![img1](images/img1.JPG)
+    ![img1](images/img1.JPG)
 
     2. 
     ![img2](images/img2.JPG)
