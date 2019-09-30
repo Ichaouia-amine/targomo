@@ -100,5 +100,25 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Running unit tests (karma-jasmine, PhantomJS)
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+I don't have a time for tests, but PhantomJS is used like browser
+        =============================== Coverage summary ===============================
+        Statements   : 26.79% ( 86/321 )
+        Branches     : 9.23% ( 6/65 )
+        Functions    : 25.71% ( 18/70 )
+        Lines        : 23.81% ( 70/294 )
+        ================================================================================
 
+
+# Spec
+
+.backend expressjs/typeOrm/swagger
+.using swagger for Api documentation    http://localhost:3000/swagger
+. one page application  http://localhost:4200
+.using proxy angular
+. respensive design : 
+    desktop => 2/3 Map && 1/3 stop Inerface
+    Mobile < 400px width 1/2 Map && 1/2 stop Inerface
+.Interface
+    1.
+    ![img1](images/img1.png)
 

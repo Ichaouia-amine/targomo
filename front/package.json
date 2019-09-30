@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json --host 0.0.0.0",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "start:local": "ng serve --env=local",
     "build": "ng lint && ng build  --prod --base-href=./",
     "build-without-lint": "ng build  --prod --base-href=./",
