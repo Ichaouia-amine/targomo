@@ -118,7 +118,7 @@ I don't have a time for tests, but PhantomJS is used like browser
 5. respensive design : 
     1. desktop => 2/3 Map && 1/3 stop Inerface
     2. Mobile < 400px width 1/2 Map && 1/2 stop Inerface
-6.Interface
+6. Interface
     1.
     ![img1](images/img1.JPG)
 
