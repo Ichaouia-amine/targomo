@@ -111,14 +111,14 @@ I don't have a time for tests, but PhantomJS is used like browser
 
 # Spec
 
-.backend expressjs/typeOrm/swagger
-.using swagger for Api documentation    http://localhost:3000/swagger
-. one page application  http://localhost:4200
-.using proxy angular
-. respensive design : 
-    desktop => 2/3 Map && 1/3 stop Inerface
-    Mobile < 400px width 1/2 Map && 1/2 stop Inerface
-.Interface
+1. backend expressjs/typeOrm/swagger
+2. using swagger for Api documentation    http://localhost:3000/swagger
+3. one page application  http://localhost:4200
+4. using proxy angular
+5. respensive design : 
+    1. desktop => 2/3 Map && 1/3 stop Inerface
+    2. Mobile < 400px width 1/2 Map && 1/2 stop Inerface
+6.Interface
     1.
     ![img1](images/img1.png)
 
