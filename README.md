@@ -113,6 +113,9 @@ I don't have a time for tests, but PhantomJS is used like browser
 
 1. backend expressjs/typeOrm/swagger
 2. using swagger for Api documentation    http://localhost:3000/swagger
+    swagger Api documentation
+    
+    ![img6](images/img6.JPG)
 3. one page application  http://localhost:4200
 4. using proxy angular
 5. respensive design : 
@@ -132,4 +135,4 @@ I don't have a time for tests, but PhantomJS is used like browser
     ![img5](images/img5.JPG)
 
     5. Mobile version
-    ![img2](images/img4.JPG)
+    ![img4](images/img4.JPG)
